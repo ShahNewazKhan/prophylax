@@ -10,7 +10,7 @@ DATA_URL = 'https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master
 HYPOTHETICAL_SUBMISSION_DATE = np.datetime64("2020-11-15")
 
 @st.cache
-def retrieve_data(window_length: int):
+def retrieve_data(window_length: int, regions: list):
     """Retrieves the OxCGRT csv and loads it into a dataframe"""
 
     df = pd.read_csv(DATA_URL, 
@@ -64,8 +64,11 @@ def retrieve_data(window_length: int):
     y_col = cases_col
     X_samples = []
     y_samples = []
-    geo_ids = df.GeoID.unique()
-    for g in geo_ids:
+    
+    # if regions[0] == 'All':
+    #     regions = df.GeoID.unique()
+    
+    for g in df.GeoID.unique():
         gdf = df[df.GeoID == g]
         all_case_data = np.array(gdf[cases_col])
         all_npi_data = np.array(gdf[npi_cols])

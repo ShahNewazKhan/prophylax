@@ -9,10 +9,10 @@ from pandas import to_datetime
 
 st.title("Prophylax: Covid19 new cases forecaster")
 st.markdown("Select a country to view the new cases forcasted by Prophylax,\
-        You can also select the regression algorithm, the forecast horizon, and the window length (click/tap the arrow if you can't see the settings).\
+        You can also select the regression algorithm and the window length (click/tap the arrow if you can't see the settings).\
         The MAE metric helps us estimate the accuracy of the forecast (lower is better). \
         Try adjusting the settings to lower the MAE value and get better results.\
-        The Github repository of the app is available [here](https://github.com/derevirn/renewcast).")
+        The Github repository of the app is available [here](https://github.com/ShahNewazKhan/prophylax).")
 
 country = st.sidebar.selectbox(
     label = "Select a Region", 
@@ -35,7 +35,7 @@ window_length = st.sidebar.slider(label = 'Look back days',
                                   min_value = 1, value = 30)
 
 
-X_train, X_test, y_train, y_test = retrieve_data(window_length)
+X_train, X_test, y_train, y_test = retrieve_data(window_length, [country])
 
 st.subheader(f'Forecasting with {regressor}')
 
