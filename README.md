@@ -1,5 +1,7 @@
 # Prophylax: Covid19 new cases forecaster
 
+![prophylax-xgb-predictions](assets/prophylax-xgb-predictions.png)
+
 ## Packages used:
 
 - Sklearn
