@@ -1,5 +1,7 @@
 import numpy as np
 import pandas as pd
+import streamlit as st
+from sklearn.model_selection import train_test_split
 
 # Main source for the training data
 DATA_URL = 'https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_latest.csv'
@@ -7,7 +9,8 @@ DATA_URL = 'https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master
 # For testing, restrict training data to that before a hypothetical predictor submission date
 HYPOTHETICAL_SUBMISSION_DATE = np.datetime64("2020-11-15")
 
-def retrieve_data()-> pd.DataFrame:
+@st.cache
+def retrieve_data(window_length: int):
     """Retrieves the OxCGRT csv and loads it into a dataframe"""
 
     df = pd.read_csv(DATA_URL, 
@@ -54,7 +57,7 @@ def retrieve_data()-> pd.DataFrame:
         df.update(df.groupby('GeoID')[npi_col].ffill().fillna(0))
     
     # Set number of past days to use to make predictions
-    nb_lookback_days = 30
+    nb_lookback_days = window_length
 
     # Create training data across all countries for predicting one day ahead
     X_cols = cases_col + npi_cols
