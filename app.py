@@ -1,9 +1,9 @@
 
 import streamlit as st
-from data_utils import retrieve_data
-from model import train_model, mae
-from geo_id import GEO_IDS
-from forecast import predict_df
+from utils.data_utils import retrieve_data
+from utils.model import train_model, mae
+from utils.geo_id import GEO_IDS
+from utils.forecast import predict_df
 from matplotlib import pyplot as plt
 from pandas import to_datetime
 
