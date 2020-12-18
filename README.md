@@ -1,6 +1,6 @@
 # Prophylax: Covid19 new cases forecaster
 
-![prophylax-xgb-predictions](assets/prophylax-forcasting-demo.gif)
+![prophylax-xgb-predictions](assets/prophylax-xgb-predictions.png)
 
 ## Packages used:
 
